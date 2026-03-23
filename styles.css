@@ -33,11 +33,6 @@ a {
   color: inherit;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
 .bg {
   position: fixed;
   inset: 0;
@@ -160,7 +155,7 @@ img {
 }
 
 .hero {
-  padding: 90px 0 70px;
+  padding: 90px 0 60px;
 }
 
 .hero-grid {
@@ -172,7 +167,7 @@ img {
 
 .hero h1 {
   font-family: "Fraunces", serif;
-  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  font-size: clamp(2.6rem, 5vw, 4.1rem);
   line-height: 1.05;
   margin: 18px 0 16px;
 }
@@ -235,23 +230,20 @@ img {
   gap: 16px;
 }
 
+.hero-photo {
+  height: 230px;
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.1)),
+    url("https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80");
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
 .hero-card h2 {
   font-family: "Fraunces", serif;
-  font-size: 1.8rem;
-}
-
-.hero-card ul {
-  list-style: none;
-  display: grid;
-  gap: 10px;
-  color: var(--ink-soft);
-}
-
-.hero-card li::before {
-  content: "\2713";
-  color: var(--accent);
-  font-weight: 700;
-  margin-right: 10px;
+  font-size: 1.7rem;
 }
 
 .hero-badge {
@@ -304,11 +296,6 @@ img {
   box-shadow: none;
 }
 
-.btn-dark {
-  background: var(--ink);
-  color: #fff;
-}
-
 .section {
   padding: 80px 0;
 }
@@ -327,13 +314,24 @@ img {
 
 .section p {
   color: var(--ink-soft);
-  max-width: 640px;
+  max-width: 680px;
 }
 
 .section-accent {
   background: rgba(255, 255, 255, 0.6);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+}
+
+.split-blocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.block {
+  display: grid;
+  gap: 10px;
 }
 
 .service-grid {
@@ -365,20 +363,18 @@ img {
   align-items: center;
 }
 
-.pill-grid {
-  display: flex;
-  flex-wrap: wrap;
+.checklist {
+  list-style: none;
+  display: grid;
   gap: 12px;
   margin-top: 20px;
 }
 
-.pill-grid span {
-  background: rgba(31, 143, 122, 0.12);
-  color: var(--accent-strong);
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.85rem;
+.checklist li::before {
+  content: "\2713";
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 10px;
 }
 
 .stats {
@@ -423,53 +419,57 @@ img {
   font-weight: 700;
 }
 
-.quote-grid {
+.reference-rotator {
+  position: relative;
+  min-height: 200px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
 }
 
-blockquote {
+.reference-rotator blockquote {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  position: absolute;
+  inset: 0;
   background: var(--paper);
   border-radius: var(--radius-md);
   padding: 24px;
   border-left: 4px solid var(--accent);
   box-shadow: 0 12px 30px rgba(17, 34, 39, 0.08);
-  transform: translateY(10px);
-  opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-blockquote.is-visible {
-  transform: translateY(0);
+.reference-rotator blockquote.is-active {
   opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  position: relative;
 }
 
-blockquote p {
+.reference-rotator p {
   color: var(--ink);
 }
 
-blockquote footer {
+.reference-rotator footer {
   margin-top: 12px;
   font-weight: 600;
   color: var(--ink-soft);
 }
 
-.pricing {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+.reference-note {
+  margin-top: 18px;
 }
 
-.pricing .card {
-  display: grid;
-  gap: 16px;
-}
-
-.pricing .featured {
-  border: 2px solid var(--accent);
-  transform: translateY(0);
-  opacity: 1;
+.cta-row {
+  margin-top: 28px;
+  background: rgba(31, 143, 122, 0.12);
+  padding: 20px 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
 
 .contact {
@@ -577,5 +577,11 @@ blockquote footer {
   .hero-actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .reference-rotator blockquote {
+    position: relative;
+    opacity: 1;
+    transform: none;
   }
 }
