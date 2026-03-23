@@ -327,6 +327,10 @@ a {
   border-bottom: 1px solid var(--line);
 }
 
+.section-tight {
+  padding-top: 40px;
+}
+
 .split-blocks {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -353,6 +357,10 @@ a {
   transform: translateY(10px);
   opacity: 0;
   transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.card-link {
+  display: block;
 }
 
 .card.is-visible {
